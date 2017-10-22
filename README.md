@@ -60,3 +60,39 @@ This config will control light[0] "0" on pins 12,16 and 20 above. To control lig
         }
     ]
     
+Running on startup (systemd)
+============================
+    
+Add a new file /etc/systemd/system/node-led.service
+    
+    [unit]
+    Description=Node.js LED Controller
+    
+    [Service]
+    ExecStart=/usr/local/bin/node /home/pi/app/app.js
+    # Required on some systems
+    #WorkingDirectory=/opt/nodeserver
+    Restart=always
+    # Restart service after 10 seconds if node service crashes
+    RestartSec=10
+    # Output to syslog
+    StandardOutput=syslog
+    StandardError=syslog
+    SyslogIdentifier=node-led
+    Environment=NODE_ENV=production PORT=80
+    
+    [Install]
+    WantedBy=multi-user.target
+
+Then enable this service
+
+    systemctl enable node-led.service
+
+Then start the service
+
+    systemctl start node-led
+    
+For more on systemd see [this guide](https://www.axllent.org/docs/view/nodejs-service-with-systemd/)
+
+
+
