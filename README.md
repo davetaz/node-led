@@ -17,12 +17,12 @@ Edit app.js and configure the pins to match those you have wired up.
 
 You can add as many as you want to an array of lights. One is pre-configured to use pins 12,16 and 20 on a Raspberry Pi.
 
-lights[0] = new RGBLed({ red: 12, green: 16, blue: 20 });
+    lights[0] = new RGBLed({ red: 12, green: 16, blue: 20 });
 
 so if you want to add a second then add something like this:
 
-lights[1] = new RGBLed({ red: 23, green: 24, blue: 25 });
-color[1] = "000000";
+    lights[1] = new RGBLed({ red: 23, green: 24, blue: 25 });
+    color[1] = "000000";
 
 Running
 =======
